@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/auth";
+import { SesionContext } from "../../contexts/SesionContext";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // Estado para el mensaje de error
+
+  const { setToken } = useContext(SesionContext); // Obtener el token del contexto
 
   const navigate = useNavigate(); // Crear el hook para redireccionar
 
@@ -17,7 +20,13 @@ const LoginForm = () => {
       const data = await login(username, password);
       console.log("Respuesta de la API:", data);
 
-      // Aquí puedes manejar lo que haces con la respuesta de la API (por ejemplo, almacenar el token)
+      // Almacenar el token en el almacenamiento local
+      localStorage.setItem("token", data.token);
+      // Almacenar el token en el contexto de la sesión
+      setToken(data.token);
+      // Redirigir al usuario a la página principal
+      navigate("/home"); // Redireccionar a la página principal
+
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);
       // Manejar el error, mostrar un mensaje al usuario, etc.
@@ -28,7 +37,7 @@ const LoginForm = () => {
   const handleGuest = () => {
     // Handle guest login logic here
     console.log("Guest login");
-    navigate("/"); // Redireccionar a la página principal
+    navigate("/home"); // Redireccionar a la página principal
   };
 
   return (
