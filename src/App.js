@@ -1,10 +1,18 @@
+import SesionProvider from "./contexts/SesionContext";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+
 function App() {
   return (
-    <div className="h-screen flex items-center justify-center bg-blue-100">
-      <h1 className="text-4xl font-bold text-blue-600">
-        DestinaAI
-      </h1>
-    </div>
+    <SesionProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />}/>
+          <Route path="/login" element={<LoginPage />}/>
+        </Routes>
+      </Router>
+    </SesionProvider>
   );
 }
 
