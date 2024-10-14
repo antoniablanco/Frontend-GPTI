@@ -6,7 +6,7 @@ const Navbar = () => {
   const { isAuthenticated, logout } = useContext(SesionContext); // Supongo que tienes un contexto de sesión
 
   return (
-    <nav className="bg-white p-4 shadow-md max-h-20">
+    <nav className="bg-white p-4 shadow-md max-h-20 sticky">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-2 text-gray-800 text-2xl font-bold">
           <Link to="/" className="flex items-center space-x-2">
