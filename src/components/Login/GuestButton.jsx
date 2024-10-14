@@ -11,7 +11,7 @@ const GuestButton = () => {
     // Handle guest login logic here
     console.log("Guest login");
     logout(); // Cerrar sesión
-    navigate("/home"); // Redireccionar a la página principal
+    navigate("/"); // Redireccionar a la página principal
   };
 
   return (

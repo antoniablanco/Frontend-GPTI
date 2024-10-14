@@ -24,7 +24,7 @@ const LoginForm = () => {
       login(data.token);
       
       // Redirigir al usuario a la página principal
-      navigate("/home"); // Redireccionar a la página principal
+      navigate("/"); // Redireccionar a la página principal
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);
       // Manejar el error, mostrar un mensaje al usuario, etc.
