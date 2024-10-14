@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../api/auth";
 import { SesionContext } from "../../contexts/SesionContext";
 
 const LoginForm = () => {
