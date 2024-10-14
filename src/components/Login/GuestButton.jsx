@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { SesionContext } from "../../contexts/SesionContext";
 
 const GuestButton = () => {
+
+  const { logout } = useContext(SesionContext); // Obtener las funciones para actualizar el contexto
   const navigate = useNavigate(); // Crear el hook para redireccionar
 
   const handleGuest = () => {
     // Handle guest login logic here
     console.log("Guest login");
+    logout(); // Cerrar sesión
     navigate("/home"); // Redireccionar a la página principal
   };
 
