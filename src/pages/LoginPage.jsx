@@ -1,11 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginForm from "../components/Login/LoginForm";
+import RegisterForm from "../components/Login/RegisterForm";
+import GuestButton from "../components/Login/GuestButton";
 
 const LoginPage = () => {
+  const [showLoginForm, setShowLoginForm] = useState(true); // Estado para controlar el formulario mostrado
+
   return (
     <div className="flex h-screen">
       <div className="w-1/2 flex items-center justify-center">
-        <LoginForm />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
+            {showLoginForm ? (
+              <>
+                <LoginForm />
+                <p className="text-center text-sm text-gray-500">
+                  ¿No tienes una cuenta?{" "}
+                  <button
+                    onClick={() => setShowLoginForm(false)}
+                    className="text-blue-500 hover:underline"
+                  >
+                    Regístrate aquí
+                  </button>
+                </p>
+              </>
+            ) : (
+              <>
+                <RegisterForm />
+                <p className="text-center text-sm text-gray-500">
+                  ¿Ya tienes una cuenta?{" "}
+                  <button
+                    onClick={() => setShowLoginForm(true)}
+                    className="text-blue-500 hover:underline"
+                  >
+                    Inicia sesión aquí
+                  </button>
+                </p>
+              </>
+            )}
+            <hr />
+            <GuestButton />
+          </div>
+        </div>
       </div>
       <div className="w-1/4 flex flex-col items-center justify-center">
         <h1 className="text-gray-500 font-bold text-6xl">DestinaAI</h1>

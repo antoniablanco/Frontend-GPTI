@@ -1,0 +1,24 @@
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { SesionContext } from "../../contexts/SesionContext";
+
+const GuestButton = () => {
+  const navigate = useNavigate(); // Crear el hook para redireccionar
+
+  const handleGuest = () => {
+    // Handle guest login logic here
+    console.log("Guest login");
+    navigate("/home"); // Redireccionar a la página principal
+  };
+
+  return (
+    <button
+      onClick={handleGuest}
+      className="w-full px-4 py-2 font-bold text-white bg-falabella rounded-md hover:bg-falabella-dark focus:outline-none focus:ring focus:ring-indigo-200"
+    >
+      Acceder como invitado
+    </button>
+  );
+};
+
+export default GuestButton;
