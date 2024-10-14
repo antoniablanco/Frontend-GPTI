@@ -8,7 +8,7 @@ const GuestButton = () => {
   const handleGuest = () => {
     // Handle guest login logic here
     console.log("Guest login");
-    navigate("/home"); // Redireccionar a la página principal
+    navigate("/"); // Redireccionar a la página principal
   };
 
   return (
