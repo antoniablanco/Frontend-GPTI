@@ -1,19 +1,19 @@
 import React from "react";
-import LoginForm from "../components/Login/LoginForm";
+import RegisterForm from "../components/Login/RegisterForm";
 import GuestButton from "../components/Login/GuestButton";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <div className="flex h-screen">
       <div className="w-1/2 flex items-center justify-center">
         <div className="flex items-center justify-center min-h-screen">
           <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
-            <LoginForm />
+            <RegisterForm />
             <p className="text-center text-sm text-gray-500">
-              ¿No tienes una cuenta?{" "}
-              <Link to="/register" className="text-blue-500 hover:underline">
-                Regístrate aquí
+              ¿Ya tienes una cuenta?{" "}
+              <Link to="/login" className="text-blue-500 hover:underline">
+                Inicia sesión aquí
               </Link>
             </p>
             <hr />
@@ -34,4 +34,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
