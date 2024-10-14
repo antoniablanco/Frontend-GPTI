@@ -9,7 +9,7 @@ const LoginForm = () => {
   const [confirmPassword, setConfirmPassword] = useState(""); // Estado para la confirmación de la contraseña
   const [errorMessage, setErrorMessage] = useState(""); // Estado para el mensaje de error
 
-  const { setToken } = useContext(SesionContext); // Obtener el token del contexto
+  const { login } = useContext(SesionContext); // Obtener el token del contexto
 
   const navigate = useNavigate(); // Crear el hook para redireccionar
 
@@ -26,12 +26,11 @@ const LoginForm = () => {
       const data = await register(username, password);
       console.log("Respuesta de la API:", data);
 
-      // Almacenar el token en el almacenamiento local
-      localStorage.setItem("token", data.token);
-      // Almacenar el token en el contexto de la sesión
-      setToken(data.token);
+      // Hacemos el login con el token que nos devolvió la API
+      login(data.token);
+
       // Redirigir al usuario a la página principal
-      navigate("/"); // Redireccionar a la página principal
+      navigate("/"); // Redireccionar a la página principale");
     } catch (error) {
       console.error("Error en el registro:", error);
       // Manejar el error, mostrar un mensaje al usuario, etc.
@@ -84,7 +83,7 @@ const LoginForm = () => {
           </label>
           <input
             type="password"
-            id="password"
+            id="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"

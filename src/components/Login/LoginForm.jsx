@@ -8,7 +8,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // Estado para el mensaje de error
 
-  const { setToken } = useContext(SesionContext); // Obtener el token del contexto
+  const { login } = useContext(SesionContext); // Obtener el token del contexto
 
   const navigate = useNavigate(); // Crear el hook para redireccionar
 
@@ -20,10 +20,9 @@ const LoginForm = () => {
       const data = await login(username, password);
       console.log("Respuesta de la API:", data);
 
-      // Almacenar el token en el almacenamiento local
-      localStorage.setItem("token", data.token);
-      // Almacenar el token en el contexto de la sesión
-      setToken(data.token);
+      // Hacemos el login en el contexto
+      login(data.token);
+      
       // Redirigir al usuario a la página principal
       navigate("/"); // Redireccionar a la página principal
     } catch (error) {
