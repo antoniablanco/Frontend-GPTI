@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/shared/Navbar";
 
-const RecomendationsPage = () => {
+const RecommendationsPage = () => {
   return (
     <>
       <Navbar />
@@ -15,4 +15,4 @@ const RecomendationsPage = () => {
   );
 };
 
-export default RecomendationsPage;
+export default RecommendationsPage;

@@ -28,11 +28,8 @@ const PreferenceForm = () => {
       );
       console.log("Respuesta de la API:", data);
 
-      // Hacemos el login en el contexto
-      
-
       // Redirigir al usuario a la página principal
-      navigate("/"); // Redireccionar a la página principal
+      navigate("/recommendations"); // Redireccionar a la página de recomendaciones
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);
       // Manejar el error, mostrar un mensaje al usuario, etc.
