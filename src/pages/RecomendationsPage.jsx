@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/shared/Navbar";
 import AzureMap from "../components/Recommendatios/AzureMap";
 import RecommendationsDisplay from "../components/Recommendatios/RecomendationsDisplay";
+import ExampleMap from "../components/Recommendatios/MapExample";
 
 const RecommendationsPage = () => {
   const [example, setExample] = useState([]);
@@ -25,7 +26,7 @@ const RecommendationsPage = () => {
             console.log("Country info:", countryInfo);
 
             // Retorna el objeto con la información que necesitamos
-            return { ...countryInfo, description: "This is a description" };
+            return countryInfo;
           } catch (error) {
             console.error("Error fetching country data:", error);
             return null; // Retornar null si hay un error
@@ -43,6 +44,7 @@ const RecommendationsPage = () => {
   return (
     <>
       <Navbar />
+      {/* <ExampleMap recommendations={example} /> */}
       <AzureMap recommendations={example} />
       <RecommendationsDisplay recommendations={example} />
     </>
