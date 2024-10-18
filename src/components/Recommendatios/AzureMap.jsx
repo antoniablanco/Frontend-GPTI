@@ -36,11 +36,10 @@ const AzureMap = ({ recommendations }) => {
       const [lat, lng] = rec.capitalInfo.latlng;
       const name = rec.name.common;
       const capital = rec.capital[0];
-      
 
       const marker = new atlas.HtmlMarker({
         position: [lng, lat],
-        color: "DodgerBlue",
+        color: "#3fae2a",
         text: "R",
       });
 

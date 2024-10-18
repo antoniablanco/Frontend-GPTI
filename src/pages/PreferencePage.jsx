@@ -6,7 +6,10 @@ const PreferencePage = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div
+        className="flex flex-col items-center justify-center bg-gray-100"
+        style={{ height: "90vh" }}
+      >
         <PreferenceForm />
       </div>
     </div>
