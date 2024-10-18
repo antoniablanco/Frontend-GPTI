@@ -6,7 +6,6 @@ import { sendAnonPreferences } from "../../api/preferences";
 const PreferenceForm = () => {
   const [travelType, setTravelType] = useState("");
   const [budget, setBudget] = useState("");
-  const [destination, setDestination] = useState("");
   const [weather, setWeather] = useState("");
   const [others, setOthers] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // Estado para el mensaje de error
@@ -15,6 +14,10 @@ const PreferenceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Envia a la página de recomendaciones (Por ahora directamente)
+    navigate("/recommendations");
+
     setErrorMessage("");
 
     try {
@@ -22,17 +25,13 @@ const PreferenceForm = () => {
       const data = await sendAnonPreferences(
         travelType,
         budget,
-        destination,
         weather,
         others
       );
       console.log("Respuesta de la API:", data);
 
-      // Hacemos el login en el contexto
-      
-
       // Redirigir al usuario a la página principal
-      navigate("/"); // Redireccionar a la página principal
+      navigate("/recommendations"); // Redireccionar a la página de recomendaciones
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);
       // Manejar el error, mostrar un mensaje al usuario, etc.
@@ -71,20 +70,6 @@ const PreferenceForm = () => {
               value={budget}
               placeholder="Ej: $100.000, estoy corto de lucas, etc."
               onChange={(e) => setBudget(e.target.value)}
-              className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 pb-1">
-              ¿Tienes un destino en mente?
-            </label>
-            <input
-              type="text"
-              id="destination"
-              value={destination}
-              placeholder="Ej: Chile, Asia, EEUU, etc."
-              onChange={(e) => setDestination(e.target.value)}
               className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
               required
             />
