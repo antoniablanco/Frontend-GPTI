@@ -7,7 +7,10 @@ const AzureMap = ({ recommendations }) => {
 
   useEffect(() => {
     const map = new atlas.Map(mapRef.current, {
-      center: [0, 0],
+      center:
+        recommendations.length > 0
+          ? [recommendations[0].longitude, recommendations[0].latitude]
+          : [0, 0],
       zoom: 1,
       language: "es-ES",
       authOptions: {
@@ -33,10 +36,11 @@ const AzureMap = ({ recommendations }) => {
 
     // Agregamos las recomendaciones al mapa
     recommendations.map((rec) => {
+      console.log("Rec:", rec);
       const latitude = rec.latitude;
       const longitude = rec.longitude;
       const name = rec.name;
-      const description = rec.answers;
+      const description = rec.answer;
 
       const marker = new atlas.HtmlMarker({
         position: [longitude, latitude],
@@ -49,10 +53,50 @@ const AzureMap = ({ recommendations }) => {
       });
 
       map.events.add("click", marker, () => {
+        // Muestra la información del marcador
         popup.setOptions({
-          content: `<div style="padding:10px;"><b>${name}</b><br>${description}</div>`,
+          content: `
+            <p style="
+              padding:10px;
+              max-width: 250px;
+              max-height: 150px;
+              overflow-y: auto;
+              border-radius: 8px;
+              box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+              word-wrap: break-word; /* Ajusta las palabras largas */
+              word-break: break-word; /* Rompe las palabras largas si es necesario */
+              overflow-wrap: break-word; /* Rompe palabras largas */
+              white-space: normal; /* Permite que el texto se ajuste como un párrafo */
+              ">
+              <b>${name}</b><br>
+              ${description}
+            </p>`,
           position: [longitude, latitude],
         });
+        popup.setOptions({
+          content: `
+            <div style="
+              padding:10px;
+              max-width: 200px;
+              max-height: 150px;
+              overflow-y: auto;
+              border-radius: 8px;
+              box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+              ">
+              <b>${name}</b>
+              <br>
+              ${description}
+            </div>`,
+          position: [longitude, latitude],
+        });
+
+        // Centra el mapa en la ubicación del marcador
+        map.setCamera({
+          center: [longitude, latitude],
+          zoom: 10,
+        });
+
+        // Abre el popup
         popup.open(map);
       });
 
@@ -68,7 +112,7 @@ const AzureMap = ({ recommendations }) => {
   }, [recommendations]);
 
   return (
-    <div ref={mapRef} style={{ width: "100%", height: "50vh" }}>
+    <div ref={mapRef} style={{ width: "100%", height: "90vh" }}>
       {/* Mapa cargado */}
     </div>
   );

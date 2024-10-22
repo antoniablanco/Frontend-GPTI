@@ -61,8 +61,11 @@ const RecommendationsPage = () => {
   return (
     <>
       <Navbar />
-      <AzureMap recommendations={recommendations} />
-      <RecommendationsDisplay recommendations={recommendations} />
+      <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-100">
+        <AzureMap recommendations={recommendations} />
+        <RecommendationsDisplay recommendations={recommendations} />
+      </div>
+      {/* <RecommendationsDisplay recommendations={recommendations} /> */}
     </>
   );
 };
