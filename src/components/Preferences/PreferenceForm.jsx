@@ -1,7 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SesionContext } from "../../contexts/SesionContext";
-import { sendAnonPreferences } from "../../api/preferences";
+import {
+  sendAnonPreferences,
+  sendLoggedPreferences,
+} from "../../api/preferences";
 
 const PreferenceForm = () => {
   const [travelType, setTravelType] = useState("");
@@ -12,6 +15,8 @@ const PreferenceForm = () => {
 
   const navigate = useNavigate(); // Crear el hook para redireccionar
 
+  const { isAuthenticated, token } = useContext(SesionContext); // Obtener el estado de autenticación
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -19,16 +24,21 @@ const PreferenceForm = () => {
 
     try {
       // Llamar a la API para autenticar al usuario
-      const data = await sendAnonPreferences(
-        travelType,
-        budget,
-        weather,
-        others
-      );
-      console.log("Respuesta de la API:", data);
+      let data;
+      if (!isAuthenticated) {
+        data = await sendAnonPreferences(travelType, budget, weather, others);
+      } else {
+        data = await sendLoggedPreferences(
+          travelType,
+          budget,
+          weather,
+          others,
+          token
+        );
+      }
 
       // Redirigir al usuario a la página principal
-      navigate("/recommendations"); // Redireccionar a la página de recomendaciones
+      navigate("/recommendations", { state: data }); // Redireccionar a la página de recomendaciones
     } catch (error) {
       console.error("Error en el envío de preferencias:", error.message);
       // Manejar el error, mostrar un mensaje al usuario, etc.
@@ -59,13 +69,13 @@ const PreferenceForm = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 pb-1">
-              ¿Tienes un prespuesto?
+              ¿Tienes un prespuesto? (USD)
             </label>
             <input
-              type="text"
+              type="number"
               id="budget"
               value={budget}
-              placeholder="Ej: $100.000, estoy corto de lucas, etc."
+              placeholder="Ej: $100.000"
               onChange={(e) => setBudget(e.target.value)}
               className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
               required

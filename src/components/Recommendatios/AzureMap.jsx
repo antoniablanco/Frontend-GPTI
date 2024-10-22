@@ -33,12 +33,13 @@ const AzureMap = ({ recommendations }) => {
 
     // Agregamos las recomendaciones al mapa
     recommendations.map((rec) => {
-      const [lat, lng] = rec.capitalInfo.latlng;
-      const name = rec.name.common;
-      const capital = rec.capital[0];
+      const latitude = rec.latitude;
+      const longitude = rec.longitude;
+      const name = rec.name;
+      const description = rec.answers;
 
       const marker = new atlas.HtmlMarker({
-        position: [lng, lat],
+        position: [longitude, latitude],
         color: "#3fae2a",
         text: "R",
       });
@@ -49,8 +50,8 @@ const AzureMap = ({ recommendations }) => {
 
       map.events.add("click", marker, () => {
         popup.setOptions({
-          content: `<div style="padding:10px;"><b>${name}</b><br>${capital}</div>`,
-          position: [lng, lat],
+          content: `<div style="padding:10px;"><b>${name}</b><br>${description}</div>`,
+          position: [longitude, latitude],
         });
         popup.open(map);
       });
@@ -67,25 +68,8 @@ const AzureMap = ({ recommendations }) => {
   }, [recommendations]);
 
   return (
-    <div>
-      <div ref={mapRef} style={{ width: "100%", height: "50vh" }}>
-        {/* Mapa cargado */}
-      </div>
-      {coordinates && (
-        <div
-          style={{
-            position: "absolute",
-            top: 10,
-            right: 10,
-            background: "rgba(255, 255, 255, 0.8)",
-            padding: "5px",
-            borderRadius: "5px",
-          }}
-        >
-          <p>Latitud: {coordinates.lat}</p>
-          <p>Longitud: {coordinates.lon}</p>
-        </div>
-      )}
+    <div ref={mapRef} style={{ width: "100%", height: "50vh" }}>
+      {/* Mapa cargado */}
     </div>
   );
 };

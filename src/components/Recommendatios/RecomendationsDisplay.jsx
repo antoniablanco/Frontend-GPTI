@@ -17,15 +17,15 @@ const RecommendationsDisplay = ({ recommendations }) => {
             className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center"
           >
             <img
-              src={recommendation.flags.svg}
-              alt={recommendation.name.common}
+              src={recommendation.flags}
+              alt={recommendation.name}
               className="w-32 h-32 object-cover rounded-full"
             />
             <h2 className="text-xl font-bold text-gray-800 mt-4">
-              {recommendation.name.common}
+              {recommendation.name}
             </h2>
             <p className="text-gray-600 text-center mt-2">
-              {recommendation.capital[0]}
+              {recommendation.answers}
             </p>
           </div>
         ))}
