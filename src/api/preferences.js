@@ -4,6 +4,7 @@ export const sendAnonPreferences = async (
   weather,
   others
 ) => {
+  console.log({ travelType, budget, weather, others });
   try {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/anon/preferences`,

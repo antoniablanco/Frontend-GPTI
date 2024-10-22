@@ -24,18 +24,20 @@ const SesionProvider = ({ children }) => {
   // Si no es válido, elimine el token del almacenamiento local
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-      console.log("Token almacenado:", storedToken);
-      try {
-        confirmToken(storedToken);
-        login(storedToken);
-        console.log("Token confirmado:", storedToken);
-      } catch (error) {
-        logout();
-        console.error("Token no válido:", storedToken);
+
+    const checkToken = async () => {
+      if (storedToken) {
+        try {
+          console.log("Verificando token almacenado...", storedToken);
+          await confirmToken(storedToken);
+          login(storedToken);
+        } catch (error) {
+          logout();
+        }
       }
     }
+
+    checkToken();
   }, []);
 
   return (

@@ -15,9 +15,6 @@ const PreferenceForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Envia a la página de recomendaciones (Por ahora directamente)
-    navigate("/recommendations");
-
     setErrorMessage("");
 
     try {
@@ -33,9 +30,9 @@ const PreferenceForm = () => {
       // Redirigir al usuario a la página principal
       navigate("/recommendations"); // Redireccionar a la página de recomendaciones
     } catch (error) {
-      console.error("Error en el inicio de sesión:", error);
+      console.error("Error en el envío de preferencias:", error.message);
       // Manejar el error, mostrar un mensaje al usuario, etc.
-      setErrorMessage(error.message || "Error en el inicio de sesión.");
+      setErrorMessage(error.message);
     }
   };
 

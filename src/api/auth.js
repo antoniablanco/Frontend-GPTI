@@ -55,8 +55,8 @@ export const register = async (username, password) => {
 
 export const confirmToken = async (token) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/confirm`, {
-      method: "POST",
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/active_token`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
