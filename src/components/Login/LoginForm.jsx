@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SesionContext } from "../../contexts/SesionContext";
+import { loginAPI } from "../../api/auth";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -16,7 +17,7 @@ const LoginForm = () => {
     setErrorMessage(""); // Limpiar el mensaje de error
     try {
       // Llamar a la API para autenticar al usuario
-      const data = await login(username, password);
+      const data = await loginAPI(username, password);
       console.log("Respuesta de la API:", data);
 
       // Hacemos el login en el contexto
