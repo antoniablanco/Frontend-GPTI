@@ -38,7 +38,7 @@ const PreferenceForm = () => {
       }
 
       // Redirigir al usuario a la página principal
-      navigate("/recommendations", { state: data }); // Redireccionar a la página de recomendaciones
+      navigate("/recommendations", { state: data.coordinates }); // Redireccionar a la página de recomendaciones
     } catch (error) {
       console.error("Error en el envío de preferencias:", error.message);
       // Manejar el error, mostrar un mensaje al usuario, etc.
