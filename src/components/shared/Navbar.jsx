@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white p-4 shadow-md max-h-20 sticky">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center space-x-2 text-gray-800 text-2xl font-bold">
+        <div className="flex items-center space-x-2 text-2xl font-bold">
           <Link to="/" className="flex items-center space-x-2">
             {/* Nombre del sitio */}
             <p className="text-gray-500 font-bold">DestinaAI</p>
@@ -24,7 +24,20 @@ const Navbar = () => {
         </div>
 
         {/* Enlaces de navegación */}
-        <div className="hidden md:flex space-x-6"></div>
+        <div className="hidden md:flex space-x-6 ml-8 mr-auto">
+          {isAuthenticated ? (
+            <>
+              <Link
+                to="/history"
+                className="text-gray-500 font-bold px-3 py-2 rounded-md hover:bg-gray-200 transition duration-200 ease-in-out"
+              >
+                Historial
+              </Link>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
 
         {/* Botones de autenticación */}
         <div className="flex space-x-4">

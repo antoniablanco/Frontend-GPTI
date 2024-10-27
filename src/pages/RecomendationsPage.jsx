@@ -42,21 +42,17 @@ const ExampleOld = async () => {
 };
 
 const RecommendationsPage = () => {
-  const [recommendations, setRecommendations] = useState(exampleAPI);
+  const [recommendations, setRecommendations] = useState([]);
 
   const { state } = useLocation();
 
   useEffect(() => {
-    if (typeof state === "object") {
-      setRecommendations([state]);
-    } else if (Array.isArray(state)) {
+    if (Array.isArray(state)) {
       setRecommendations(state);
-    }
+    } else if (typeof state === "object") {
+      setRecommendations([state]);
+    } 
   }, [state]);
-
-  useEffect(() => {
-    console.log("Recommendations:", recommendations);
-  }, [recommendations]);
 
   return (
     <>
