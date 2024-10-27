@@ -1,5 +1,5 @@
 import Navbar from "../components/shared/Navbar";
-import Antarctica from "../components/medals/Antartica";
+import Antarctica from "../components/medals/Antarctica";
 import Asia from "../components/medals/Asia";
 
 const MedalsPage = () => {

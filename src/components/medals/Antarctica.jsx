@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AntarcticaSVG from "./AntarcticaSVG";
 
 const Antarctica = () => {
   const [visited, setVisited] = useState(false);
@@ -10,10 +11,9 @@ const Antarctica = () => {
   return (
     <div onClick={handleClick} className="cursor-pointer">
       <div className="p-4 bg-white rounded-2xl"> {/* Agrega el padding y el color aquí */}
-        <img
-          src={`${process.env.PUBLIC_URL}/continents/Antarctica.svg`}
-          alt="Antártida"
-          className={`h-40 ${visited ? "bg-falabella" : "bg-gray-400"}`} 
+        <AntarcticaSVG
+          fillInner={visited ? "#3FAE2A" : "#A1A1AA"}
+          fillOuter="white"
         />
       </div>
     </div>

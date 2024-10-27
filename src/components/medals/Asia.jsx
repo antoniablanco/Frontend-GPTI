@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AsiaSVG from "./AsiaSVG";
 
 const Asia = () => {
   const [visited, setVisited] = useState(false);
@@ -10,11 +11,9 @@ const Asia = () => {
   return (
     <div onClick={handleClick} className="cursor-pointer">
       <div className="p-4 bg-white rounded-2xl"> {/* Agrega el padding y el color aquí */}
-        <img
-          src={`${process.env.PUBLIC_URL}/continents/Asia.svg`}
-          alt="Asia"
-          className={`h-40 ${visited ? "bg-falabella" : "bg-gray-400"}`} 
-        />
+        <AsiaSVG 
+          fillInner={visited ? "#3FAE2A" : "#A1A1AA"}
+          fillOuter="white" />
       </div>
     </div>
   );
