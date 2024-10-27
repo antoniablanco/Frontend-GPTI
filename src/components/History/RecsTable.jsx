@@ -1,9 +1,12 @@
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTable, useSortBy } from "react-table";
 import { formatDate } from "../../utils/formatDates";
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/solid";
 
 const RecsTable = ({ recommendations }) => {
+  const navigate = useNavigate();
+
   const columns = useMemo(
     () => [
       { Header: "ID", accessor: "id" },
@@ -19,7 +22,10 @@ const RecsTable = ({ recommendations }) => {
   );
 
   const handleRowClick = (row) => {
-    console.log(row);
+    const recs = recommendations.find((rec) => rec.id === row.values.id);
+    console.log(Array.from(recs.coordinates));
+    // // Redirigir al usuario a la página principal
+    navigate("/recommendations", { state: recs.coordinates });
   };
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
