@@ -47,6 +47,7 @@ const RecommendationsPage = () => {
   const { state } = useLocation();
 
   useEffect(() => {
+    console.log("State:", state);
     if (Array.isArray(state)) {
       setRecommendations(state);
     } else if (typeof state === "object") {

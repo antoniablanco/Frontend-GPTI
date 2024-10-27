@@ -14,7 +14,7 @@ const RecommendationsDisplay = ({ recommendations }) => {
         ¡Aquí estan tus recomendaciones!
       </h1>
 
-      <div className="overflow-y-auto">
+      <div className="overflow-y-auto space-y-4">
         {!recommendations ? (
           <></>
         ) : (
