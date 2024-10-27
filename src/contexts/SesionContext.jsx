@@ -1,5 +1,5 @@
 // Crea el contexto de la sesión del usuario
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { confirmToken } from "../api/auth";
 
 export const SesionContext = createContext();
@@ -22,19 +22,23 @@ const SesionProvider = ({ children }) => {
 
   // Intente obtener el token del almacenamiento local y confirmar si es válido
   // Si no es válido, elimine el token del almacenamiento local
-  const storedToken = localStorage.getItem("token");
-  if (storedToken) {
-    setToken(storedToken);
-    console.log("Token almacenado:", storedToken);
-    try {
-      confirmToken(storedToken);
-      login(storedToken);
-      console.log("Token confirmado:", storedToken);
-    } catch (error) {
-      logout();
-      console.error("Token no válido:", storedToken);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+
+    const checkToken = async () => {
+      if (storedToken) {
+        try {
+          console.log("Verificando token almacenado...", storedToken);
+          await confirmToken(storedToken);
+          login(storedToken);
+        } catch (error) {
+          logout();
+        }
+      }
     }
-  }
+
+    checkToken();
+  }, []);
 
   return (
     <SesionContext.Provider
