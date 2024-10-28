@@ -12,9 +12,13 @@ import OceaniaSVG from "../medals/SVGs/OceaniaSVG";
 import SouthAmericaSVG from "../medals/SVGs/SouthAmericaSVG";
 
 const Medallion = () => {
-  const { medals, hasMedals } = useContext(SesionContext);
+  const { medals, hasMedals, isAuthenticated } = useContext(SesionContext);
 
   const navigate = useNavigate();
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   if (!hasMedals) {
     return (
