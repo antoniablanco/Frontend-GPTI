@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as atlas from "azure-maps-control";
 
-const AzureMap = ({ recommendations }) => {
+const AzureMap = ({
+  recommendations,
+  selectedRecommendation,
+  onSelectRecommendation,
+}) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const popupsRef = useRef([]);
@@ -100,10 +104,14 @@ const AzureMap = ({ recommendations }) => {
         // Abre el popup
         popup.open(newMap);
 
-        // guardamos la referencia del popup
-        popupsRef.current.push(popup);
+        // Selecciona la recomendación
+        onSelectRecommendation(rec);
       });
 
+      // Guardamos la referencia del popup
+      popupsRef.current.push(popup);
+
+      // Agregamos el marcador y el popup al mapa
       newMap.markers.add(marker);
       newMap.popups.add(popup);
     });
@@ -117,14 +125,14 @@ const AzureMap = ({ recommendations }) => {
     };
   }, [recommendations]);
 
-  const zoomToRecommendation = (coordinates) => {
-    if (coordinates) {
-      mapRef.current.setCamera({
-        center: coordinates,
-        zoom: 10,
+  useEffect(() => {
+    if (selectedRecommendation && map) {
+      map.setCamera({
+        center: [selectedRecommendation.longitude, selectedRecommendation.latitude],
+        zoom: 8,
       });
     }
-  };
+  }, [selectedRecommendation, map]);
 
   const handleZoomOut = () => {
     if (popupsRef.current.length > 0) {
