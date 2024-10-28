@@ -3,10 +3,11 @@ import * as atlas from "azure-maps-control";
 
 const AzureMap = ({ recommendations }) => {
   const mapRef = useRef(null);
-  const [coordinates, setCoordinates] = useState(null);
+  const [map, setMap] = useState(null);
+  const popupsRef = useRef([]);
 
   useEffect(() => {
-    const map = new atlas.Map(mapRef.current, {
+    const newMap = new atlas.Map(mapRef.current, {
       center:
         recommendations.length > 0
           ? [recommendations[0].longitude, recommendations[0].latitude]
@@ -25,7 +26,7 @@ const AzureMap = ({ recommendations }) => {
     });
 
     // Elimina el contenedor de controles
-    map.events.add("ready", function () {
+    newMap.events.add("ready", function () {
       const controlContainer = document.querySelector(
         ".atlas-control-container"
       );
@@ -52,7 +53,7 @@ const AzureMap = ({ recommendations }) => {
         pixelOffset: [0, -30],
       });
 
-      map.events.add("click", marker, () => {
+      newMap.events.add("click", marker, () => {
         // Muestra la información del marcador
         popup.setOptions({
           content: `
@@ -91,29 +92,62 @@ const AzureMap = ({ recommendations }) => {
         });
 
         // Centra el mapa en la ubicación del marcador
-        map.setCamera({
+        newMap.setCamera({
           center: [longitude, latitude],
           zoom: 10,
         });
 
         // Abre el popup
-        popup.open(map);
+        popup.open(newMap);
+
+        // guardamos la referencia del popup
+        popupsRef.current.push(popup);
       });
 
-      map.markers.add(marker);
-      map.popups.add(popup);
+      newMap.markers.add(marker);
+      newMap.popups.add(popup);
     });
 
+    setMap(newMap);
+
     return () => {
-      if (map) {
-        map.dispose();
+      if (newMap) {
+        newMap.dispose();
       }
     };
   }, [recommendations]);
 
+  const zoomToRecommendation = (coordinates) => {
+    if (coordinates) {
+      mapRef.current.setCamera({
+        center: coordinates,
+        zoom: 10,
+      });
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (popupsRef.current.length > 0) {
+      popupsRef.current.forEach((popup) => {
+        popup.close();
+      });
+    }
+    if (map) {
+      map.setCamera({
+        zoom: 1,
+      });
+    }
+  };
+
   return (
-    <div ref={mapRef} style={{ width: "100%", height: "90vh" }}>
-      {/* Mapa cargado */}
+    <div style={{ position: "relative", width: "100%", height: "90vh" }}>
+      <div ref={mapRef} style={{ width: "100%", height: "100%" }}></div>
+      <button
+        onClick={handleZoomOut}
+        className="absolute top-4 right-4 bg-falabella text-white px-4 py-2 rounded hover:bg-falabella-dark"
+      >
+        Zoom Out
+      </button>
     </div>
   );
 };
