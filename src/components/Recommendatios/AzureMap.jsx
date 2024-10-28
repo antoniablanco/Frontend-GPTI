@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { MinusCircleIcon } from "@heroicons/react/outline";
 import * as atlas from "azure-maps-control";
 
 const AzureMap = ({
@@ -128,7 +129,10 @@ const AzureMap = ({
   useEffect(() => {
     if (selectedRecommendation && map) {
       map.setCamera({
-        center: [selectedRecommendation.longitude, selectedRecommendation.latitude],
+        center: [
+          selectedRecommendation.longitude,
+          selectedRecommendation.latitude,
+        ],
         zoom: 8,
       });
     }
@@ -152,9 +156,12 @@ const AzureMap = ({
       <div ref={mapRef} style={{ width: "100%", height: "100%" }}></div>
       <button
         onClick={handleZoomOut}
-        className="absolute top-4 right-4 bg-falabella text-white px-4 py-2 rounded hover:bg-falabella-dark"
+        className="absolute top-4 right-4 bg-white text-gray-600 px-2 pt-1 rounded hover:bg-gray-100"
       >
-        Zoom Out
+        <div className="inline-flex justify-center">
+          <MinusCircleIcon className="h-6 w-6" />
+          <span className="ml-2">Zoom Out</span>
+        </div>
       </button>
     </div>
   );
