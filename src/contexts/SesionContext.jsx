@@ -44,7 +44,6 @@ const SesionProvider = ({ children }) => {
     const checkToken = async () => {
       if (storedToken) {
         try {
-          console.log("Verificando token almacenado...", storedToken);
           await confirmToken(storedToken);
           login(storedToken);
         } catch (error) {

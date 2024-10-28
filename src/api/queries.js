@@ -24,7 +24,6 @@ export const getRecommendations = async (token) => {
 };
 
 export const updateRecStars = async (token, coordinate_id, stars) => {
-  console.log({ coordinate_id, stars });
   try {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/query/grade_coordinate`,

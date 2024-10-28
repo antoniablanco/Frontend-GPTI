@@ -65,7 +65,6 @@ export const sendLoggedPreferences = async (
       }
     );
     const data = await response.json();
-    console.log("Respuesta a Logeado:", data);
     if (!response.ok) {
       throw new Error(`Error en las preferencias: ${response.detail}`);
     }
