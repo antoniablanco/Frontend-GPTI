@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RegisterForm from "../components/Login/RegisterForm";
 import GuestButton from "../components/Login/GuestButton";
 import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
+  useEffect(() => {
+    document.title = "Registro";
+  }, []);
+
   return (
     <div className="flex h-screen">
       <div className="w-1/2 flex items-center justify-center">

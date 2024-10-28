@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "../components/Login/LoginForm";
 import GuestButton from "../components/Login/GuestButton";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
+  useEffect(() => {
+    document.title = "Iniciar sesión";
+  }, []);
+
   return (
     <div className="flex h-screen">
       <div className="w-1/2 flex items-center justify-center">
