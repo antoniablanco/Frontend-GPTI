@@ -14,7 +14,7 @@ export const sendAnonPreferences = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          travelType,
+          travel_type: travelType,
           budget,
           weather,
           duration,
@@ -56,7 +56,7 @@ export const sendLoggedPreferences = async (
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          travelType,
+          travel_type: travelType,
           budget,
           weather,
           duration,
