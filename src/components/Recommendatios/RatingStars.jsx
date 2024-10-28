@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StarIcon } from '@heroicons/react/outline';
 import { StarIcon as SolidStarIcon } from '@heroicons/react/solid';
 
-const Rating = ({ initialRating = 0 }) => {
+const Rating = ({ initialRating = 0, onChange }) => {
   const [rating, setRating] = useState(initialRating);
 
   const handleMouseEnter = (value) => {
@@ -15,6 +15,7 @@ const Rating = ({ initialRating = 0 }) => {
 
   const handleClick = (value) => {
     setRating(value);
+    onChange(value);
   };
 
   return (

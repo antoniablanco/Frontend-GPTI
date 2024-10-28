@@ -3,6 +3,7 @@ import RecommendationCard from "./RecomendationCard";
 
 const RecommendationsDisplay = ({
   recommendations,
+  onChangeRecommendations,
   selectedRecommendation,
   onSelectRecommendation,
 }) => {
@@ -20,6 +21,17 @@ const RecommendationsDisplay = ({
     }
   }, [selectedRecommendation, recommendations]);
 
+  const changeRecommendation = (rec, value) => {
+    const newRecommendations = recommendations.map((r) => {
+      if (r === rec) {
+        return { ...r, stars: value };
+      }
+      return r;
+    }
+    );
+    onChangeRecommendations(newRecommendations);
+  };
+
   return (
     <div
       className="flex flex-col items-center justify-center p-4"
@@ -34,6 +46,7 @@ const RecommendationsDisplay = ({
             key={index}
             recommendation={rec}
             onSelect={() => onSelectRecommendation(rec)}
+            onChangeRecommendation={(value) => changeRecommendation(rec, value)}
           />
         ))}
       </div>
