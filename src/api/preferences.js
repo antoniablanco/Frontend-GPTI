@@ -30,10 +30,6 @@ export const sendAnonPreferences = async (
     const data = await response.json();
     return data; // Devolver la respuesta de la API (token, usuario, etc.)
   } catch (error) {
-    console.error(
-      "Error en la llamada a la API de Preferencias Anónimas:",
-      error
-    );
     throw error;
   }
 };
@@ -71,10 +67,6 @@ export const sendLoggedPreferences = async (
 
     return data; // Devolver la respuesta de la API (token, usuario, etc.)
   } catch (error) {
-    console.error(
-      "Error en la llamada a la API de Preferencias Logeado:",
-      error
-    );
     throw error;
   }
 };

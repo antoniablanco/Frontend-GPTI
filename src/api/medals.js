@@ -19,7 +19,6 @@ export const getMedals = async (token) => {
 
     return data;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };
@@ -46,7 +45,6 @@ export const updateMedal = async (token, medal, value) => {
 
     return data;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };
