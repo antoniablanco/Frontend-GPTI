@@ -12,7 +12,7 @@ export const getRecommendations = async (token) => {
     );
 
     if (!response.ok) {
-      throw new Error(`Error en las recomendaciones: ${response.message}`);
+      throw new Error(`Error en las recomendaciones: ${response.detail}`);
     }
 
     const data = await response.json();

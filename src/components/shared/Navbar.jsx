@@ -20,12 +20,14 @@ const Navbar = () => {
               className="h-8 w-auto"
             />
           </Link>
-          <Link
-            to="/history"
-            className="text-gray-500 text-lg font-bold px-3 py-2 rounded-md hover:bg-gray-200 transition duration-200 ease-in-out"
-          >
-            Historial
-          </Link>
+          {isAuthenticated && (
+            <Link
+              to="/history"
+              className="text-gray-500 text-lg font-bold px-3 py-2 rounded-md hover:bg-gray-200 transition duration-200 ease-in-out"
+            >
+              Historial
+            </Link>
+          )}
         </div>
 
         {/* Sección central */}

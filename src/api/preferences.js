@@ -2,9 +2,9 @@ export const sendAnonPreferences = async (
   travelType,
   budget,
   weather,
-  others,
+  duration,
+  others
 ) => {
-  console.log({ travelType, budget, weather, others });
   try {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/destinations_anonymous`,
@@ -17,19 +17,23 @@ export const sendAnonPreferences = async (
           travelType,
           budget,
           weather,
+          duration,
           others,
         }),
       }
     );
 
     if (!response.ok) {
-      throw new Error(`Error en las preferencias: ${response.message}`);
+      throw new Error(`Error en las preferencias: ${response.detail}`);
     }
 
     const data = await response.json();
     return data; // Devolver la respuesta de la API (token, usuario, etc.)
   } catch (error) {
-    console.error("Error en la llamada a la API de Preferencias Anónimas:", error);
+    console.error(
+      "Error en la llamada a la API de Preferencias Anónimas:",
+      error
+    );
     throw error;
   }
 };
@@ -38,23 +42,24 @@ export const sendLoggedPreferences = async (
   travelType,
   budget,
   weather,
+  duration,
   others,
   token
 ) => {
   try {
-    console.log({ travelType, budget, weather, others, token });
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/openai/destinations`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           travelType,
           budget,
           weather,
+          duration,
           others,
         }),
       }
@@ -62,12 +67,15 @@ export const sendLoggedPreferences = async (
     const data = await response.json();
     console.log("Respuesta a Logeado:", data);
     if (!response.ok) {
-      throw new Error(`Error en las preferencias: ${response.message}`);
+      throw new Error(`Error en las preferencias: ${response.detail}`);
     }
 
     return data; // Devolver la respuesta de la API (token, usuario, etc.)
   } catch (error) {
-    console.error("Error en la llamada a la API de Preferencias Logeado:", error);
+    console.error(
+      "Error en la llamada a la API de Preferencias Logeado:",
+      error
+    );
     throw error;
   }
-}
+};
