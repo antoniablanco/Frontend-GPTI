@@ -4,6 +4,8 @@ import Asia from "../components/medals/Asia";
 import Africa from "../components/medals/Africa";
 import Europe from "../components/medals/Europe";
 import Oceania from "../components/medals/Oceania";
+import NorthAmerica from "../components/medals/NorthAmerica";
+import SouthAmerica from "../components/medals/SouthAmerica";
 
 const MedalsPage = () => {
   return (
@@ -21,6 +23,8 @@ const MedalsPage = () => {
         <Africa />
         <Europe />
         <Oceania />
+        <NorthAmerica />
+        <SouthAmerica />
       </div>
     </>
   );
