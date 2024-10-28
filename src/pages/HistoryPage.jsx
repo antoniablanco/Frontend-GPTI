@@ -10,6 +10,10 @@ const HistoryPage = () => {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
+    document.title = "Historial de recomendaciones";
+  }, []);
+
+  useEffect(() => {
     if (!isAuthenticated) {
       return;
     }

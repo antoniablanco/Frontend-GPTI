@@ -12,6 +12,10 @@ const RecommendationsPage = () => {
   const { state } = useLocation();
 
   useEffect(() => {
+    document.title = "Recomendaciones";
+  }, []);
+
+  useEffect(() => {
     if (Array.isArray(state)) {
       setRecommendations(state);
     } else if (typeof state === "object") {

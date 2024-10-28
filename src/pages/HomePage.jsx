@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/shared/Navbar";
 
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,10 @@ const HomePage = () => {
   const handleStart = () => {
     navigate("/preferences"); // Redirecciona a la página de recomendaciones
   };
+
+  useEffect(() => {
+    document.title = "DestinaAI";
+  }, []);
 
   return (
     <>
