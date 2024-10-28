@@ -1,5 +1,7 @@
 // Crea el contexto de la sesión del usuario
 import React, { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { confirmToken } from "../api/auth";
 import { getMedals } from "../api/medals";
 
@@ -19,6 +21,8 @@ const SesionProvider = ({ children }) => {
   });
   const [hasMedals, setHasMedals] = useState(false);
 
+  const navigate = useNavigate();
+
   const login = (token) => {
     setToken(token);
     setIsAuthenticated(true);
@@ -29,6 +33,7 @@ const SesionProvider = ({ children }) => {
     setToken(null);
     setIsAuthenticated(false);
     localStorage.removeItem("token");
+    navigate("/");
   };
 
   // Intente obtener el token del almacenamiento local y confirmar si es válido
