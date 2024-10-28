@@ -11,8 +11,8 @@ const MedalsPage = () => {
     <>
       <Navbar />
       <div
-        className="flex flex-col items-center justify-center bg-gray-100 overflow-y-auto"
-        style={{ height: "90vh" }}
+        className="flex flex-col items-center justify-center bg-gray-100 overflow-y-auto p-8"
+        style={{ minHeight: "90vh" }}
       >
         <h1 className="text-5xl font-bold">¡Tus Medallas!</h1>
         <MedalHolder />

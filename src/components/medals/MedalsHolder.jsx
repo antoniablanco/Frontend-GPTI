@@ -27,20 +27,18 @@ const MedalHolder = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 mt-8">
+    <div className="flex flex-wrap justify-center mt-8 space-x-4 space-y-4">
       {
         // Muestra la medalla de norteamerica solo si north_america es llave de medals
         medals.north_america !== undefined && (
           <div
             onClick={() => handleChange("north_america")}
-            className="cursor-pointer"
+            className="cursor-pointer p-4 bg-white rounded-2xl"
           >
-            <div className="p-4 bg-white rounded-2xl">
-              <NorthAmericaSVG
-                fillInner={medals.north_america ? "#3FAE2A" : "A1A1AA"}
-                fillOuter="white"
-              />
-            </div>
+            <NorthAmericaSVG
+              fillInner={medals.north_america ? "#3FAE2A" : "A1A1AA"}
+              fillOuter="white"
+            />
           </div>
         )
       }
@@ -49,14 +47,12 @@ const MedalHolder = () => {
         medals.south_america !== undefined && (
           <div
             onClick={() => handleChange("south_america")}
-            className="cursor-pointer"
+            className="cursor-pointer p-4 bg-white rounded-2xl"
           >
-            <div className="p-4 bg-white rounded-2xl">
-              <SouthAmericaSVG
-                fillInner={medals.south_america ? "#3FAE2A" : "A1A1AA"}
-                fillOuter="white"
-              />
-            </div>
+            <SouthAmericaSVG
+              fillInner={medals.south_america ? "#3FAE2A" : "A1A1AA"}
+              fillOuter="white"
+            />
           </div>
         )
       }
@@ -65,14 +61,12 @@ const MedalHolder = () => {
         medals.europe !== undefined && (
           <div
             onClick={() => handleChange("europe")}
-            className="cursor-pointer"
+            className="cursor-pointer p-4 bg-white rounded-2xl"
           >
-            <div className="p-4 bg-white rounded-2xl">
-              <EuropeSVG
-                fillInner={medals.europe ? "#3FAE2A" : "A1A1AA"}
-                fillOuter="white"
-              />
-            </div>
+            <EuropeSVG
+              fillInner={medals.europe ? "#3FAE2A" : "A1A1AA"}
+              fillOuter="white"
+            />
           </div>
         )
       }
@@ -81,27 +75,26 @@ const MedalHolder = () => {
         medals.africa !== undefined && (
           <div
             onClick={() => handleChange("africa")}
-            className="cursor-pointer"
+            className="cursor-pointer p-4 bg-white rounded-2xl"
           >
-            <div className="p-4 bg-white rounded-2xl">
-              <AfricaSVG
-                fillInner={medals.africa ? "#3FAE2A" : "A1A1AA"}
-                fillOuter="white"
-              />
-            </div>
+            <AfricaSVG
+              fillInner={medals.africa ? "#3FAE2A" : "A1A1AA"}
+              fillOuter="white"
+            />
           </div>
         )
       }
       {
         // Muestra la medalla de asia solo si asia es llave de medals
         medals.asia !== undefined && (
-          <div onClick={() => handleChange("asia")} className="cursor-pointer">
-            <div className="p-4 bg-white rounded-2xl">
-              <AsiaSVG
-                fillInner={medals.asia ? "#3FAE2A" : "A1A1AA"}
-                fillOuter="white"
-              />
-            </div>
+          <div
+            onClick={() => handleChange("asia")}
+            className="cursor-pointer p-4 bg-white rounded-2xl"
+          >
+            <AsiaSVG
+              fillInner={medals.asia ? "#3FAE2A" : "A1A1AA"}
+              fillOuter="white"
+            />
           </div>
         )
       }
@@ -110,14 +103,12 @@ const MedalHolder = () => {
         medals.oceania !== undefined && (
           <div
             onClick={() => handleChange("oceania")}
-            className="cursor-pointer"
+            className="cursor-pointer p-4 bg-white rounded-2xl"
           >
-            <div className="p-4 bg-white rounded-2xl">
-              <OceaniaSVG
-                fillInner={medals.oceania ? "#3FAE2A" : "A1A1AA"}
-                fillOuter="white"
-              />
-            </div>
+            <OceaniaSVG
+              fillInner={medals.oceania ? "#3FAE2A" : "A1A1AA"}
+              fillOuter="white"
+            />
           </div>
         )
       }
@@ -126,14 +117,12 @@ const MedalHolder = () => {
         medals.antartica !== undefined && (
           <div
             onClick={() => handleChange("antartica")}
-            className="cursor-pointer"
+            className="cursor-pointer p-4 bg-white rounded-2xl"
           >
-            <div className="p-4 bg-white rounded-2xl">
-              <AntarcticaSVG
-                fillInner={medals.antartica ? "#3FAE2A" : "A1A1AA"}
-                fillOuter="white"
-              />
-            </div>
+            <AntarcticaSVG
+              fillInner={medals.antartica ? "#3FAE2A" : "A1A1AA"}
+              fillOuter="white"
+            />
           </div>
         )
       }
