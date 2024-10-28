@@ -15,8 +15,11 @@ const RecsTable = ({ recommendations }) => {
         accessor: "time_stamp",
         Cell: ({ value }) => formatDate(value),
       },
+      { Header: "Tipo de Viaje", accessor: "travel_type" },
       { Header: "Presupuesto", accessor: "budget" },
       { Header: "Clima", accessor: "weather" },
+      { Header: "Duración", accessor: "duration" },
+
     ],
     []
   );
@@ -67,7 +70,7 @@ const RecsTable = ({ recommendations }) => {
           return (
             <tr
               {...row.getRowProps()}
-              className="text-center hover:bg-falabella-light"
+              className="text-center hover:bg-falabella-light cursor-pointer"
               onClick={() => handleRowClick(row)}
             >
               {row.cells.map((cell) => (
