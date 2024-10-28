@@ -34,6 +34,7 @@ const RecommendationsPage = () => {
         />
         <RecommendationsDisplay
           recommendations={recommendations}
+          onChangeRecommendations={setRecommendations}
           selectedRecommendation={selectedRecommendation}
           onSelectRecommendation={setSelectedRecommendation} // Función para selección desde el display
         />

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { SesionContext } from "../../contexts/SesionContext";
 import { getImages } from "../../utils/pexels";
 import {
   ChevronLeftIcon,
@@ -6,11 +7,18 @@ import {
   LocationMarkerIcon,
 } from "@heroicons/react/solid";
 import Rating from "./RatingStars";
+import { updateRecStars } from "../../api/queries";
 
-const RecommendationCard = ({ recommendation, onSelect }) => {
+const RecommendationCard = ({
+  recommendation,
+  onSelect,
+  onChangeRecommendation,
+}) => {
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showButtons, setShowButtons] = useState(false);
+
+  const { token } = useContext(SesionContext);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -29,6 +37,15 @@ const RecommendationCard = ({ recommendation, onSelect }) => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
+  };
+
+  const handleRecommendationChange = async (value) => {
+    try {
+      await updateRecStars(token, recommendation.id, value);
+      onChangeRecommendation(value);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -83,7 +100,10 @@ const RecommendationCard = ({ recommendation, onSelect }) => {
 
       {/* Calificación en la esquina inferior derecha */}
       <div className="absolute bottom-4 right-4">
-        <Rating initialRating={recommendation.rating} />
+        <Rating
+          initialRating={recommendation.stars}
+          onChange={handleRecommendationChange}
+        />
       </div>
     </div>
   );
