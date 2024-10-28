@@ -1,6 +1,7 @@
 import Navbar from "../components/shared/Navbar";
 import Antarctica from "../components/medals/Antarctica";
 import Asia from "../components/medals/Asia";
+import Africa from "../components/medals/Africa";
 
 const MedalsPage = () => {
   return (
@@ -15,6 +16,7 @@ const MedalsPage = () => {
         </h1>
         <Antarctica />
         <Asia />
+        <Africa />
       </div>
     </>
   );
