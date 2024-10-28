@@ -30,13 +30,11 @@ const RecommendationsDisplay = ({
       </h1>
       <div className="overflow-y-auto space-y-4" ref={scrollRef}>
         {recommendations.map((rec, index) => (
-          <div
+          <RecommendationCard
             key={index}
-            onClick={() => onSelectRecommendation(rec)}
-            className="cursor-pointer"
-          >
-            <RecommendationCard recommendation={rec} />
-          </div>
+            recommendation={rec}
+            onSelect={() => onSelectRecommendation(rec)}
+          />
         ))}
       </div>
     </div>
