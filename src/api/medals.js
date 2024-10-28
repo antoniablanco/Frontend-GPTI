@@ -19,15 +19,12 @@ export const getMedals = async (token) => {
 
     return data;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };
 
 export const updateMedal = async (token, medal, value) => {
   try {
-
-    console.log(medal);
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/medal_table/update`,
       {
@@ -48,7 +45,6 @@ export const updateMedal = async (token, medal, value) => {
 
     return data;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };

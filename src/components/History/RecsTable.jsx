@@ -19,14 +19,13 @@ const RecsTable = ({ recommendations }) => {
       { Header: "Presupuesto", accessor: "budget" },
       { Header: "Clima", accessor: "weather" },
       { Header: "Duración", accessor: "duration" },
-
     ],
     []
   );
 
   const handleRowClick = (row) => {
     const recs = recommendations.find((rec) => rec.id === row.values.id);
-    console.log(Array.from(recs.coordinates));
+
     // // Redirigir al usuario a la página principal
     navigate("/recommendations", { state: recs.coordinates });
   };

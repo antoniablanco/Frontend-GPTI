@@ -42,7 +42,6 @@ const AzureMap = ({
 
     // Agregamos las recomendaciones al mapa
     recommendations.map((rec) => {
-      console.log("Rec:", rec);
       const latitude = rec.latitude;
       const longitude = rec.longitude;
       const name = rec.name;

@@ -8,8 +8,6 @@ const GuestButton = () => {
   const navigate = useNavigate(); // Crear el hook para redireccionar
 
   const handleGuest = () => {
-    // Handle guest login logic here
-    console.log("Guest login");
     logout(); // Cerrar sesión
     navigate("/"); // Redireccionar a la página principal
   };

@@ -19,7 +19,6 @@ const HistoryPage = () => {
     }
     getRecommendations(token)
       .then((data) => {
-        console.log(data);
         // Actualizar el estado de las recomendaciones
         setRecommendations(data);
       })

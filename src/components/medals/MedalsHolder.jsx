@@ -16,11 +16,9 @@ const MedalHolder = () => {
   const { token } = useContext(SesionContext);
 
   const handleChange = async (medal) => {
-    console.log("Clicked", medal);
     try {
       const data = await updateMedal(token, medal, !medals[medal]);
       setMedals(data);
-      console.log(data);
     } catch (error) {
       console.error(error);
     }

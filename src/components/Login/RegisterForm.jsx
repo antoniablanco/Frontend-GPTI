@@ -24,7 +24,6 @@ const LoginForm = () => {
     try {
       // Llamar a la API para autenticar al usuario
       const data = await register(username, password);
-      console.log("Respuesta de la API:", data);
 
       // Hacemos el login con el token que nos devolvió la API
       login(data.token);
