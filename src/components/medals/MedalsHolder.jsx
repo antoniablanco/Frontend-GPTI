@@ -10,48 +10,10 @@ import AsiaSVG from "./SVGs/AsiaSVG";
 import OceaniaSVG from "./SVGs/OceaniaSVG";
 import AntarcticaSVG from "./SVGs/AntarcticaSVG";
 
-const Format = () => {
-  const [visited, setVisited] = useState(false);
-  const handleClick = () => {
-    console.log("Clicked");
-  };
-  return (
-    <div onClick={handleClick} className="cursor-pointer">
-      <div className="p-4 bg-white rounded-2xl">
-        <SouthAmericaSVG
-          fillInner={visited ? "#3FAE2A" : "#A1A1AA"}
-          fillOuter="white"
-        />
-      </div>
-    </div>
-  );
-};
-
 const MedalHolder = () => {
-  const [medals, setMedals] = useState({
-    north_america: false,
-    south_america: false,
-    europe: false,
-    africa: false,
-    asia: false,
-    oceania: false,
-    antartica: false,
-  });
+  const { medals, setMedals } = useContext(SesionContext);
 
   const { token } = useContext(SesionContext);
-
-  useEffect(() => {
-    const fetchMedals = async () => {
-      try {
-        const data = await getMedals(token);
-        setMedals(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchMedals();
-  }, [token]);
 
   const handleChange = async (medal) => {
     console.log("Clicked", medal);
