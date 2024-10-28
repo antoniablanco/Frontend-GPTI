@@ -128,7 +128,7 @@ const PreferenceForm = () => {
               type=""
               id="others"
               value={others}
-              placeholder="Deja aquí otras preferencias que te gustaría agregar."
+              placeholder="Deja aquí otras preferencias que te gustaría agregar (Opcional). "
               onChange={(e) => setOthers(e.target.value)}
               className="w-full h-40 p-3 border rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
               disabled={loading}

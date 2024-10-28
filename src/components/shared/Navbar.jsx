@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { SesionContext } from "../../contexts/SesionContext"; // Asumiendo que tienes un contexto para manejar la sesión
+import { SesionContext } from "../../contexts/SesionContext";
+import {
+  LoginIcon,
+  UserAddIcon,
+  LogoutIcon,
+  ClockIcon,
+} from "@heroicons/react/outline";
 import Medallion from "./Medallion";
 
 const Navbar = () => {
@@ -10,7 +16,7 @@ const Navbar = () => {
     <nav className="bg-white p-4 shadow-md max-h-20 sticky">
       <div className="container mx-auto flex justify-between items-center">
         {/* Sección izquierda */}
-        <div className="flex items-center space-x-2 text-2xl font-bold">
+        <div className="flex items-center space-x-4 text-2xl font-bold">
           <Link to="/" className="flex items-center space-x-2">
             <p className="text-gray-500 font-bold">DestinaAI</p>
             <p className="text-gray-300 font-bold text-sm">by</p>
@@ -23,9 +29,10 @@ const Navbar = () => {
           {isAuthenticated && (
             <Link
               to="/history"
-              className="text-gray-500 text-lg font-bold px-3 py-2 rounded-md hover:bg-gray-200 transition duration-200 ease-in-out"
+              className="inline-flex items-center space-x-1 text-gray-500 text-lg font-bold px-3 py-2 rounded-md hover:bg-gray-200 transition duration-200 ease-in-out"
             >
-              Historial
+              <ClockIcon className="h-6 w-6" />
+              <span className="hidden md:inline">Historial</span>
             </Link>
           )}
         </div>
@@ -42,24 +49,27 @@ const Navbar = () => {
             <>
               <button
                 onClick={logout}
-                className="text-white px-4 py-2 rounded-md bg-falabella hover:bg-falabella-dark"
+                className="inline-flex items-center space-x-1 text-white px-4 py-2 rounded-md bg-falabella hover:bg-falabella-dark"
               >
-                Cerrar sesión
+                <LogoutIcon className="h-6 w-6" />
+                <span className="hidden md:inline">Cerrar sesión</span>
               </button>
             </>
           ) : (
             <>
               <Link
                 to="/login"
-                className="text-white px-4 py-2 rounded-md bg-falabella hover:bg-falabella-dark"
+                className="inline-flex items-center space-x-1 text-white px-4 py-2 rounded-md bg-falabella hover:bg-falabella-dark"
               >
-                Iniciar sesión
+                <LoginIcon className="h-6 w-6" />
+                <span className="hidden md:inline">Iniciar sesión</span>
               </Link>
               <Link
                 to="/register"
-                className="text-white px-4 py-2 rounded-md bg-falabella hover:bg-falabella-dark"
+                className="inline-flex items-center space-x-1 text-white px-4 py-2 rounded-md bg-falabella hover:bg-falabella-dark"
               >
-                Registrarse
+                <UserAddIcon className="h-6 w-6" />
+                <span className="hidden md:inline">Registrarse</span>
               </Link>
             </>
           )}
