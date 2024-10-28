@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import PreferencePage from './pages/PreferencePage';
 import RecommendationsPage from "./pages/RecomendationsPage";
 import HistoryPage from "./pages/HistoryPage";
+import MedalsPage from "./pages/MedalsPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/preferences" element={<PreferencePage />} />
           <Route path="/recommendations" element={<RecommendationsPage />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/medals" element={<MedalsPage />} />
         </Routes>
       </Router>
     </SesionProvider>
